@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HomeImprove — Cost‑Smart Property Upgrades</title>
+  <meta name="description" content="Personalized, budget-friendly ideas to improve your home's value. Visualize changes and connect with local experts." />
+  <!-- Tailwind CDN for quick styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Small custom styles */
+    .hero-bg { background: linear-gradient(120deg, #f7fafc 0%, #eef2ff 100%); }
+    .card-shadow { box-shadow: 0 6px 18px rgba(15,23,42,0.06); }
+    .before-after { position:relative; overflow:hidden; }
+    .before-after img { display:block; width:100%; height:auto; }
+    .slider-handle { position:absolute; top:0; left:50%; transform:translateX(-50%); width:4px; height:100%; background:#fff; mix-blend-mode:overlay; }
+  </style>
+</head>
+<body class="antialiased text-slate-800">
+  <header class="max-w-7xl mx-auto p-6 flex items-center justify-between">
+    <a href="#" class="text-2xl font-semibold">HomeImprove</a>
+    <nav class="space-x-6 hidden md:flex">
+      <a href="#features" class="hover:underline">Features</a>
+      <a href="#visualize" class="hover:underline">Visualize</a>
+      <a href="#estimate" class="hover:underline">Estimate</a>
+      <a href="#connect" class="hover:underline">Connect</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="#signup" class="px-4 py-2 bg-indigo-600 text-white rounded-lg">Get Started</a>
+    </div>
+  </header>
+
+  <main class="hero-bg">
+    <section class="max-w-6xl mx-auto p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Make your home look better — without breaking the bank</h1>
+        <p class="mt-4 text-lg text-slate-600">Personalized, budget-friendly improvement ideas, quick visual mockups, and trusted local professionals — all in one place for Indian middle‑class homeowners.</p>
+        <div class="mt-6 flex gap-3">
+          <a href="#estimate" class="px-6 py-3 bg-indigo-600 text-white rounded-lg">Get a cost estimate</a>
+          <a href="#visualize" class="px-6 py-3 border border-indigo-600 text-indigo-600 rounded-lg">See examples</a>
+        </div>
+        <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700">
+          <li>🔍 Personalized suggestions based on rooms & budget</li>
+          <li>🖼️ Before/after visualizer</li>
+          <li>💸 Cost estimator & prioritized upgrades</li>
+          <li>🛠️ Connect with vetted local experts</li>
+        </ul>
+      </div>
+      <div class="card-shadow rounded-xl p-4 bg-white">
+        <h3 class="font-semibold">Quick start: tell us about your space</h3>
+        <form id="quickForm" class="mt-4 grid gap-3">
+          <div>
+            <label class="text-sm">Which room?</label>
+            <select id="room" class="w-full mt-1 p-2 border rounded">
+              <option>Living Room</option>
+              <option>Bedroom</option>
+              <option>Kitchen</option>
+              <option>Bathroom</option>
+              <option>Balcony / Terrace</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-sm">Budget (₹)</label>
+            <input id="budget" type="number" placeholder="e.g. 15000" class="w-full mt-1 p-2 border rounded" />
+          </div>
+          <div>
+            <label class="text-sm">What's the priority?</label>
+            <select id="priority" class="w-full mt-1 p-2 border rounded">
+              <option>Maximize resale value</option>
+              <option>Improve comfort</option>
+              <option>Low-cost aesthetic refresh</option>
+            </select>
+          </div>
+          <button type="submit" class="mt-2 px-4 py-2 bg-indigo-600 text-white rounded">Get suggestions</button>
+          <p id="quickResult" class="text-sm text-slate-600 mt-2"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <section id="features" class="max-w-6xl mx-auto p-8">
+    <h2 class="text-2xl font-semibold">How it helps</h2>
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-5 rounded-xl card-shadow">
+        <h4 class="font-semibold">Personalized Plans</h4>
+        <p class="mt-2 text-sm text-slate-600">Recommendations tuned to your room, budget and goals, with low, medium and high-impact options.</p>
+      </div>
+      <div class="bg-white p-5 rounded-xl card-shadow">
+        <h4 class="font-semibold">Visualize Changes</h4>
+        <p class="mt-2 text-sm text-slate-600">Before/after mockups and sliders so you can preview paint, flooring or furniture changes.</p>
+      </div>
+      <div class="bg-white p-5 rounded-xl card-shadow">
+        <h4 class="font-semibold">Local Experts & Supplies</h4>
+        <p class="mt-2 text-sm text-slate-600">Connect with nearby contractors, interior designers and affordable material suppliers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="visualize" class="max-w-6xl mx-auto p-8">
+    <h2 class="text-2xl font-semibold">Try a visualizer</h2>
+    <p class="mt-2 text-sm text-slate-600">Drag the slider to compare before / after. Replace these images with user uploads or AI-generated mockups.</p>
+    <div class="mt-4 before-after rounded-lg overflow-hidden card-shadow" style="height:360px;">
+      <div id="beforeImg" style="position:absolute; inset:0;">
+        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=60" alt="before" style="width:100%; height:100%; object-fit:cover;" />
+      </div>
+      <div id="afterImg" style="position:absolute; inset:0; width:50%; overflow:hidden;">
+        <img src="https://images.unsplash.com/photo-1598300055582-4b7a7f9f8d4a?auto=format&fit=crop&w=1200&q=60" alt="after" style="width:100%; height:100%; object-fit:cover;" />
+      </div>
+      <div id="handle" class="slider-handle"></div>
+    </div>
+  </section>
+
+  <section id="estimate" class="max-w-6xl mx-auto p-8">
+    <h2 class="text-2xl font-semibold">Estimate & Prioritize</h2>
+    <p class="mt-2 text-sm text-slate-600">Get a quick prioritized list of improvements based on your budget.</p>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white p-5 rounded-xl card-shadow">
+        <h3 class="font-semibold">Estimate</h3>
+        <p class="mt-2 text-sm text-slate-600">Enter a budget and we'll suggest top 3 cost-effective improvements.</p>
+        <div class="mt-3">
+          <input id="estBudget" type="number" placeholder="Your budget in ₹" class="w-full p-2 border rounded" />
+          <button id="runEstimate" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded">Run estimate</button>
+        </div>
+        <ul id="estList" class="mt-3 text-sm text-slate-700"></ul>
+      </div>
+      <div class="bg-white p-5 rounded-xl card-shadow">
+        <h3 class="font-semibold">Why these?</h3>
+        <p class="mt-2 text-sm text-slate-600">Each suggestion includes reason, typical cost range, and expected impact on appeal/value.</p>
+        <div id="estDetails" class="mt-3 text-sm text-slate-700"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="connect" class="max-w-6xl mx-auto p-8">
+    <h2 class="text-2xl font-semibold">Connect with Experts</h2>
+    <p class="mt-2 text-sm text-slate-600">Request quotes from local contractors and designers.</p>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-5 rounded-xl card-shadow">
+        <h4 class="font-semibold">Vetted Contractors</h4>
+        <p class="mt-2 text-sm text-slate-600">Shortlist and compare profiles, ratings and sample projects.</p>
+      </div>
+      <div class="bg-white p-5 rounded-xl card-shadow">
+        <h4 class="font-semibold">Materials Marketplace</h4>
+        <p class="mt-2 text-sm text-slate-600">Find affordable vendors for paints, fixtures, tiles and more.</p>
+      </div>
+      <div class="bg-white p-5 rounded-xl card-shadow">
+        <h4 class="font-semibold">Project Planner</h4>
+        <p class="mt-2 text-sm text-slate-600">Timeline, shopping checklist and a simple contract template to keep things clear.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="max-w-7xl mx-auto p-6 text-sm text-slate-600">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div>© HomeImprove — built for middle-class Indian homeowners</div>
+      <div class="mt-4 md:mt-0">Made with ❤️ • <a href="#signup" class="underline">Sign up</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple interactivity (replace with real backend / AI recommendation later)
+    document.getElementById('quickForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const room = document.getElementById('room').value;
+      const budget = Number(document.getElementById('budget').value) || 10000;
+      const priority = document.getElementById('priority').value;
+
+      // naive suggestion engine (example)
+      const suggestions = {
+        'Living Room': [
+          {title:'Fresh paint + feature wall', cost: Math.min(8000, Math.round(budget*0.35)), impact:'High'},
+          {title:'Replace lighting & add curtains', cost: Math.min(7000, Math.round(budget*0.3)), impact:'Medium'},
+          {title:'Rearrange + 1 accent furniture', cost: Math.min(6000, Math.round(budget*0.25)), impact:'Low'}
+        ],
+        'Bedroom': [
+          {title:'Repaint + new bed linens', cost: Math.min(7000, Math.round(budget*0.4)), impact:'High'},
+          {title:'Storage optimization', cost: Math.min(5000, Math.round(budget*0.3)), impact:'Medium'},
+          {title:'Soft lighting and rug', cost: Math.min(4000, Math.round(budget*0.2)), impact:'Low'}
+        ],
+        'Kitchen': [
+          {title:'Refinish cabinets', cost: Math.min(15000, Math.round(budget*0.5)), impact:'High'},
+          {title:'Replace faucets & handles', cost: Math.min(4000, Math.round(budget*0.2)), impact:'Medium'},
+          {title:'Open shelving/organizers', cost: Math.min(5000, Math.round(budget*0.25)), impact:'Low'}
+        ],
+        'Bathroom': [
+          {title:'Deep clean + regrout tiles', cost: Math.min(6000, Math.round(budget*0.4)), impact:'High'},
+          {title:'New showerhead & fixtures', cost: Math.min(3000, Math.round(budget*0.2)), impact:'Medium'},
+          {title:'Mirror & small storage', cost: Math.min(2500, Math.round(budget*0.2)), impact:'Low'}
+        ],
+        'Balcony / Terrace': [
+          {title:'Flooring mats + plants', cost: Math.min(8000, Math.round(budget*0.35)), impact:'High'},
+          {title:'Seating & lights', cost: Math.min(5000, Math.round(budget*0.3)), impact:'Medium'},
+          {title:'Shade or pergola', cost: Math.min(12000, Math.round(budget*0.4)), impact:'Low'}
+        ]
+      };
+
+      const out = suggestions[room] || suggestions['Living Room'];
+      const resultEl = document.getElementById('quickResult');
+      resultEl.innerHTML = '<strong>Top pick:</strong> ' + out[0].title + ' (≈ ₹' + out[0].cost + ', impact: ' + out[0].impact + ')';
+    });
+
+    // Before / after slider
+    const after = document.getElementById('afterImg');
+    const handle = document.getElementById('handle');
+    let dragging = false;
+    function updateSlider(clientX){
+      const rect = after.parentElement.getBoundingClientRect();
+      let pct = (clientX - rect.left) / rect.width;
+      pct = Math.max(0, Math.min(1, pct));
+      after.style.width = (pct * 100) + '%';
+      handle.style.left = (pct * 100) + '%';
+    }
+    handle.addEventListener('mousedown', ()=> dragging = true);
+    window.addEventListener('mouseup', ()=> dragging = false);
+    window.addEventListener('mousemove', (e)=>{ if(dragging) updateSlider(e.clientX); });
+    // make slider draggable by clicking anywhere on the image too
+    after.parentElement.addEventListener('click', (e)=> updateSlider(e.clientX));
+
+    // Estimate button
+    document.getElementById('runEstimate').addEventListener('click', ()=>{
+      const b = Number(document.getElementById('estBudget').value) || 10000;
+      const list = document.getElementById('estList');
+      const details = document.getElementById('estDetails');
+      // Simple rules to produce estimates
+      const picks = b < 8000 ? [
+        {t:'Paint & minor fixes', c: Math.round(b*0.5), r:'High impact for low cost'},
+        {t:'Lighting upgrades', c: Math.round(b*0.3), r:'Improves perceived space'},
+        {t:'Declutter & staging', c: Math.round(b*0.2), r:'Immediate aesthetic boost'}
+      ] : b < 25000 ? [
+        {t:'Refinish surfaces', c: Math.round(b*0.45), r:'Modern look, good ROI'},
+        {t:'Better lighting + fixtures', c: Math.round(b*0.3), r:'Improves photos & appeal'},
+        {t:'One accent furniture', c: Math.round(b*0.25), r:'Adds value & comfort'}
+      ] : [
+        {t:'Upgrade cabinets / flooring', c: Math.round(b*0.5), r:'Strong resale value'},
+        {t:'Bathroom or kitchen refresh', c: Math.round(b*0.3), r:'High ROI'},
+        {t:'Professional staging & photos', c: Math.round(b*0.2), r:'Maximize listing appeal'}
+      ];
+
+      list.innerHTML = '';
+      picks.forEach(p=>{
+        const li = document.createElement('li');
+        li.textContent = p.t + ' — ₹' + p.c;
+        list.appendChild(li);
+      });
+      details.innerHTML = '<ul>' + picks.map(p=>'\n<li><strong>'+p.t+'</strong>: '+p.r+' (est ₹'+p.c+')</li>').join('') + '</ul>';
+    });
+
+    // Simple progressive enhancement: allow pressing Enter on estimate input
+    document.getElementById('estBudget').addEventListener('keydown', function(e){ if(e.key === 'Enter'){ document.getElementById('runEstimate').click(); } });
+  </script>
+</body>
+</html>
